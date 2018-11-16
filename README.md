@@ -13,4 +13,14 @@ There is some requirements that must be accomplished, some of thems are:
  
  `pip install -r requirements.txt` 
  
+ Structure:
+ ```bash
+ - code
+   - main.py
+ - LICENSE
+ - README.md
+ - requirements.txt
+ ```
+ 
+ 
  Also, I highly recommend to create a virtualenv to test it.
