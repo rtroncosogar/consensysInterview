@@ -5,7 +5,7 @@ import sys
 from web3 import Web3
 
 
-parser = argparse.ArgumentParser(description='Process some integers.')
+parser = argparse.ArgumentParser(description='A Python snipet that looks for the BlockHash and the TxHash, that belongs to a contract address.')
 requiredNamed = parser.add_argument_group('Required named arguments')
 requiredNamed.add_argument('contractAddress', metavar='ContractAddress', type= str, nargs=1, help='Here, you must provide the contract address')
 requiredNamed.add_argument('-p', '--host', help='HTTP provider like: https://mainnet.infura.io/<API_SECRET>', required=True)
