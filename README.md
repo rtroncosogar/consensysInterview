@@ -11,6 +11,6 @@ There is some requirements that must be accomplished, some of thems are:
  
  To install every single requirement, please before run:
  
- pip install -r requirements.txt
+ `pip install -r requirements.txt` 
  
  Also, I highly recommend to create a virtualenv to test it.
