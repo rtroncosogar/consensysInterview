@@ -1,7 +1,11 @@
-# ConsensysInterview
+## ConsensysInterview
 There is my personal python snipet that was required from Viant Team
 
-To use:
+What does this code?
+
+This code it's a python script that returns the transaction Hash and the Blockhash where the contract was created, you just need to provide the contract address and a valid infura API Secret.
+
+How to install:
 
 There is some requirements that must be accomplished, some of thems are:
 
@@ -9,7 +13,7 @@ There is some requirements that must be accomplished, some of thems are:
  * web3py
  * pysha3
  
- To install every single requirement, please before run:
+To install every single requirement, please before run:
  
  `pip install -r requirements.txt` 
  
@@ -24,6 +28,17 @@ There is some requirements that must be accomplished, some of thems are:
  
  
  Also, I highly recommend to create a virtualenv to test it.
+ 
+ #How to use:
+ 
+ Once you have create the virtual env and installed the requirements, from the terminar call:
+ 
+ `python PATH_TO_FOLDER_WHERE_IS_LOCATED_THE_SCRIPT/main.py 0xcontract_address_here --host https://mainnet.infura.io/<API_SECRET>`
+ 
+ And you will recieve (after a while, dependent of the block number, the output:
+ 
+`Block: 0xblock_from_which_contract_was_deployed
+Transaction: 0xtransaction_with_which_contract_was deployed` 
  
  Some useful knowledge, that I've used to make this possible:
  
