@@ -1,7 +1,7 @@
 # ConsensysInterview
-There is my personal python snipet that was required from Viant Team
+Here is my personal python snipet that was required from Viant Team
 
-## What does this code?
+## What does this code do?
 
 This code it's a python script that returns the transaction Hash and the Blockhash where the contract was created, you just need to provide the contract address and a valid infura API Secret.
 
@@ -31,11 +31,11 @@ To install every single requirement, please before run:
  
  ## How to use:
  
- Once you have create the virtual env and installed the requirements, from the terminar call:
+ Once you have created the virtual env and installed the requirements, execute in terminal the following:
  
  `python PATH_TO_FOLDER/main.py 0xcontract_address_here --host https://mainnet.infura.io/<API_SECRET>`
  
- And you will recieve (after a while, dependent of the block number, the output:
+ And you will recieve (after a while, dependent of the block number) the output:
  
 ```bash 
 Block: 0xblock_from_which_contract_was_deployed`
@@ -49,13 +49,13 @@ Transaction: 0xtransaction_with_which_contract_was deployed
  * https://infura.io/docs
  * https://ethereum.stackexchange.com/questions/2531/common-useful-javascript-snippets-for-geth/3478#3478
  
- ## How can be improved the speed?
+ ## How could we improve the speed?
  
- Well, by now, I think it's smart to look in the blockchain from the last mined block, towards the origin of time. Cause, the last blocks will contain more transactions than the very first ones and that will increase the chance to find the bloock that you are looking for. Regarless of that, this version will start from the very first block until the last.
+ Well, by now, I think it's smart to look at the blockchain from the last mined block, towards the origin of time. Cause, the last blocks will contain more transactions than the very first ones and that will increase the chance to find the bloock that you are looking for. Regarless of that, this version will start from the very first block until the last.
  
- In the future, I'll add some useful coments and test some optimization, but after the review (cause I try to preserve the esence of the challenge). 
+ In the future, I'll add some useful comments and test some optimization, but after the review (cause I try to preserve the esence of the challenge). 
  
- If you want to know something about this script, please fell free to wrtite me an email to rtroncosogar@gmail.com
+ If you want to know something about this script, please feel free to wrtite me an email to rtroncosogar@gmail.com
  
  Any fork or pull request will be apreciated.
  
