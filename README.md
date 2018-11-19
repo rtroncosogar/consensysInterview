@@ -1,7 +1,7 @@
 # ConsensysInterview
 There is my personal python snipet that was required from Viant Team
 
-What does this code?
+## What does this code?
 
 This code it's a python script that returns the transaction Hash and the Blockhash where the contract was created, you just need to provide the contract address and a valid infura API Secret.
 
@@ -48,4 +48,14 @@ Transaction: 0xtransaction_with_which_contract_was deployed
  * https://medium.com/@codetractio/inside-an-ethereum-transaction-fa94ffca912f
  * https://infura.io/docs
  * https://ethereum.stackexchange.com/questions/2531/common-useful-javascript-snippets-for-geth/3478#3478
+ 
+ ## How can be improved the speed?
+ 
+ Well, by now, I think it's smart to look in the blockchain from the last mined block, towards the origin of time. Cause, the last blocks will contain more transactions than the very first ones and that will increase the chance to find the bloock that you are looking for. Regarless of that, this version will start from the very first block until the last.
+ 
+ In the future, I'll add some useful coments and test some optimization, but after the review (cause I try to preserve the esence of the challenge). 
+ 
+ If you want to know something about this script, please fell free to wrtite me an email to rtroncosogar@gmail.com
+ 
+ Any fork or pull request will be apreciated.
  
