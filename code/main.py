@@ -16,21 +16,24 @@ def lookForBlockAndHashBlock(end_point, address):
     web3 = Web3(Web3.HTTPProvider(end_point))
     assert web3.isAddress(address), 'You have provide an invalid address'
     if web3.isConnected() == True:
-        address = address.lower()
+        address = web3.toChecksumAddress(address)
         find = 0
         for i in range(web3.eth.blockNumber):
             if find > 0:
                 break
-            for u in web3.eth.getBlock(i, True)['transactions']:
-                if u['to'] == None:
-                    sender1 = bytes.fromhex(str(u['from']).replace('0x',''))
-                    currentContract = '0x' + str(sha3.keccak_256(rlp.encode([sender1, u['nonce']])).hexdigest()[-40:])
-                    if currentContract == address:
-                        sys.stdout.write('Block: ' + str(web3.toHex(u['blockHash'])) + '\n')
-                        sys.stdout.write('Transaction: ' + str(web3.toHex(u['hash'])) + '\n')
-                        find +=1
-                        break
-        else:
-            sys.stdout.write('There is a problem with the conection' + '\n')
+                '''Below, according to what I've understood, is the implemented the Connor's suggestion'''
+            elif len(web3.eth.getCode(address, i )) > 0:
+                for u in web3.eth.getBlock(i, True)['transactions']:
+                    if u['to'] == None:
+                        sender1 = bytes.fromhex(str(u['from']).replace('0x',''))
+                        currentContract = '0x' + str(sha3.keccak_256(rlp.encode([sender1, u['nonce']])).hexdigest()[-40:])
+                        currentContract = web3.toChecksumAddress(currentContract)
+                        if currentContract == address:
+                            sys.stdout.write('Block: ' + str(web3.toHex(u['blockHash'])) + '\n')
+                            sys.stdout.write('Transaction: ' + str(web3.toHex(u['hash'])) + '\n')
+                            find +=1
+                            break
+    else:
+        sys.stdout.write('There is a problem with the conection' + '\n')
 
 lookForBlockAndHashBlock(args.host,sys.argv[1])
