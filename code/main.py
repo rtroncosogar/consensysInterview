@@ -30,7 +30,7 @@ def lookForBlockAndHashBlock(end_point, address):
     if web3.isConnected() == True:
         address = web3.toChecksumAddress(address)
         find = 0
-        for i in range(4203584, web3.eth.blockNumber):
+        for i in range(web3.eth.blockNumber):
             if find > 0:
                 break
             elif getRightBlock(web3, address, i) > 0:
