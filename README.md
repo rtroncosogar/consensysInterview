@@ -36,7 +36,7 @@ To install every single requirement, please before run:
  
  `python PATH_TO_FOLDER/main.py 0xcontract_address_here --host https://mainnet.infura.io/<API_SECRET>`
  
- And you will recieve (after a while, dependent of the block number) the output:
+ And you will recieve (after a while, usually 15 seconds or less) the output:
  
 ```bash 
 Block: 0xblock_from_which_contract_was_deployed
