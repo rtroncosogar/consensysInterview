@@ -1,27 +1,7 @@
-import argparse
-import rlp
-import sha3
 import sys
+import argparse
+import helpers as hp
 from web3 import Web3
-
-
-
-
-def getRightBlock(provider, address, currentBlockNumber):
-    return len(provider.eth.getCode(address, currentBlockNumber))
-    
-
-def addressCalculator(provider, currentBlockNumber, attribute):
-    for u in provider.eth.getBlock(currentBlockNumber, True)[attribute]:
-        if u['to'] == None:
-            sender = bytes.fromhex(str(u['from']).replace('0x',''))
-            currentContract = '0x' + str(sha3.keccak_256(rlp.encode([sender, u['nonce']])).hexdigest()[-40:])
-            currentContract = provider.toChecksumAddress(currentContract)
-            return currentContract, u
-
-def outputData(provider, index):
-    sys.stdout.write('Block: ' + str(provider.toHex(index['blockHash'])) + '\n')
-    sys.stdout.write('Transaction: ' + str(provider.toHex(index['hash'])) + '\n')
 
 
 def lookForBlockAndHashBlock(end_point, address):
@@ -30,14 +10,14 @@ def lookForBlockAndHashBlock(end_point, address):
     if web3.isConnected() == True:
         address = web3.toChecksumAddress(address)
         find = 0
-        for i in range(web3.eth.blockNumber):
+        for i in range(3978343 , web3.eth.blockNumber):
             if find > 0:
                 break
-            elif getRightBlock(web3, address, i) > 0:
-                currentContract, index = addressCalculator(web3, i, 'transactions')
-                if currentContract == address:
-                    outputData(web3, index)
+            elif hp.getRightBlock(web3, address, i) > 0:
+                state, index = hp.addressCalculator(web3, i, 'transactions', address)
+                if state == True:
                     find +=1
+                    hp.outputData(web3, index)
                     break
     else:
         sys.stdout.write('There is a problem with the conection' + '\n')
