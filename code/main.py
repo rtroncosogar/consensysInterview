@@ -18,7 +18,7 @@ def lookForBlockAndHashBlock(end_point, address):
                 find +=1
                 hp.outputData(web3, index)
     else:
-        sys.stdout.write('There is a problem with the conection' + '\n')
+        sys.stdout.write('There is a problem with the connection' + '\n')
 
 '''
         Below, is the argument parser

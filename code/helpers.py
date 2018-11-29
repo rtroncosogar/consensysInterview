@@ -6,15 +6,10 @@ import sha3
 this code was separated just to improve the readbility of the main function '''
 
 
-def binarySeeker(provider, address):
-    pass
-
-
 def blockSeeker(provider, address, currentBlockNumber):
     ''' This function returns the length of a parameters that returns the eth_Code,
         for reference: https://infura.io/docs/ethereum/json-rpc/eth_getCode '''
     return len(provider.eth.getCode(address, currentBlockNumber))
-
 
 
 def outputData(provider, index):
@@ -38,6 +33,7 @@ def addressCalculator(provider, currentBlockNumber, attribute, address):
             if currentContract == address:
                 currentDict = u
                 count += 1
+
 
 def binarySeeker(value, provider, address):
     ''' This function implements BinarySearch Algorithm to seek the first main block, where the contract was deployed '''

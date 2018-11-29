@@ -39,7 +39,7 @@ To install every single requirement, please before run:
  And you will recieve (after a while, dependent of the block number) the output:
  
 ```bash 
-Block: 0xblock_from_which_contract_was_deployed`
+Block: 0xblock_from_which_contract_was_deployed
 Transaction: 0xtransaction_with_which_contract_was deployed
 ```
   
