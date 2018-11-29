@@ -2,6 +2,9 @@ import rlp
 import sys
 import sha3
 
+''' This is the function collecion used to accomplish the challenge,
+this code was separated just to improve the readbility of the main function '''
+
 
 def binarySeeker(provider, address):
     pass
