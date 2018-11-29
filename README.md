@@ -9,7 +9,7 @@ This code it's a python script that returns the transaction Hash and the Blockha
 
 There is some requirements that must be accomplished, some of thems are:
 
- * Python 3.7
+ * Python 3.7.0
  * web3py
  * pysha3
  
