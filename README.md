@@ -21,6 +21,7 @@ To install every single requirement, please before run:
  ```bash
  - code
    - main.py
+   - helpers.py
  - LICENSE
  - README.md
  - requirements.txt
@@ -49,13 +50,17 @@ Transaction: 0xtransaction_with_which_contract_was deployed
  * https://infura.io/docs
  * https://ethereum.stackexchange.com/questions/2531/common-useful-javascript-snippets-for-geth/3478#3478
  
- ## How could we improve the speed?
+ ## How do this work?
  
- Well, by now, I think it's smart to look at the blockchain from the last mined block, towards the origin of time. Cause, the last blocks will contain more transactions than the very first ones and that will increase the chance to find the bloock that you are looking for. Regarless of that, this version will start from the very first block until the last.
+ Currently, I have made an implementation based in the well known "Binary Search" algorithm (you can see the code [here](https://github.com/rtroncosogar/consensysInterview/blob/master/code/helpers.py)), the aforamentioned implementaion was made in the function "binarySeeker" which provides a O(log n) computation time, making possible to find quickly the exact block where the contract was deployed. 
+
+Once we have the block where the contract was deployed, the program seeks across that block for the transaction where the contract was created. To do that, as filter uses any transaction where the "to" parameter is null, which is an indicator of a contract creation, then computes the anddress that the contract will take and compares with the Address provided by the user, if the is coincidence, will return the Transaction Hash and the block Hash related to the contract.
+
+  ## How can we improve the speed?
  
- In the future, I'll add some useful comments and test some optimization, but after the review (cause I try to preserve the esence of the challenge). 
- 
- If you want to know something about this script, please feel free to wrtite me an email to rtroncosogar@gmail.com
+ In the current version, seems like we have found the optimal solution, but if you can provide any other approach will be very appreciated.
+
+ If you have any doubt, please feel free to contact to me at rtroncosogar@gmail.com
  
  Any fork or pull request will be apreciated.
  
