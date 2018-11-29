@@ -7,18 +7,16 @@ from web3 import Web3
 def lookForBlockAndHashBlock(end_point, address):
     web3 = Web3(Web3.HTTPProvider(end_point))
     assert web3.isAddress(address), 'You have provide an invalid address'
+    address = address.lower()
     if web3.isConnected() == True:
         address = web3.toChecksumAddress(address)
         find = 0
-        for i in range(3978343 , web3.eth.blockNumber):
-            if find > 0:
-                break
-            elif hp.getRightBlock(web3, address, i) > 0:
-                state, index = hp.addressCalculator(web3, i, 'transactions', address)
-                if state == True:
-                    find +=1
-                    hp.outputData(web3, index)
-                    break
+        i = hp.binarySeeker(web3.eth.blockNumber, web3, address) 
+        if hp.blockSeeker(web3, address, i) > 0:
+            state, index = hp.addressCalculator(web3, i, 'transactions', address)
+            if state == True:
+                find +=1
+                hp.outputData(web3, index)
     else:
         sys.stdout.write('There is a problem with the conection' + '\n')
 
