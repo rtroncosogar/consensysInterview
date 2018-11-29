@@ -21,7 +21,7 @@ def outputData(provider, index):
 
 def addressCalculator(provider, currentBlockNumber, attribute, address):
     ''' This function returns a candidate address, generated according the Ethereum specification,
-        for  reference see: https://medium.com/@codetractio/inside-an-ethereum-transaction-fa94ffca912f'''
+        for  reference, I highly reccomend to see: https://medium.com/@codetractio/inside-an-ethereum-transaction-fa94ffca912f'''
     count = 0
     for u in provider.eth.getBlock(currentBlockNumber, True)[attribute]:
         if count > 0:
