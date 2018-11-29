@@ -58,9 +58,7 @@ Once we have the block where the contract was deployed, the program seeks across
 
   ## How can we improve the speed?
  
- In the current version, seems like we have found the optimal solution, but if you can provide any other approach will be very appreciated.
+ In the current version, seems like we have found the optimal solution, but if you can provide any other approach, it will be very appreciated. So forks and pull request are very welcomed.
 
  If you have any doubt, please feel free to contact to me at rtroncosogar@gmail.com
- 
- Any fork or pull request will be apreciated.
  
