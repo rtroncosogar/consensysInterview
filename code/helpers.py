@@ -30,7 +30,7 @@ def addressCalculator(provider, currentBlockNumber, attribute, address):
     count = 0
     for u in provider.eth.getBlock(currentBlockNumber, True)[attribute]:
         if count > 0:
-            return True, currentDict            
+            break           
         elif u['to'] == None:
             sender = bytes.fromhex(str(u['from']).replace('0x',''))
             currentContract = '0x' + str(sha3.keccak_256(rlp.encode([sender, u['nonce']])).hexdigest()[-40:])
@@ -38,6 +38,7 @@ def addressCalculator(provider, currentBlockNumber, attribute, address):
             if currentContract == address:
                 currentDict = u
                 count += 1
+    return True, currentDict 
 
 
 def binarySeeker(value, provider, address):

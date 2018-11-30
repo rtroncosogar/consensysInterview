@@ -14,7 +14,7 @@ def lookForBlockAndHashBlock(end_point, address):
         i = hp.binarySeeker(web3.eth.blockNumber, web3, address) 
         if hp.blockSeeker(web3, address, i) > 0:
             state, index = hp.addressCalculator(web3, i, 'transactions', address)
-            if state == True:
+            if state:
                 find +=1
                 hp.outputData(web3, index)
     else:
