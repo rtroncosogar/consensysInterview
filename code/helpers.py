@@ -43,9 +43,9 @@ def binarySeeker(value, provider, address):
     while True:
         midpoint = (first + last) // 2
         if first == last:
-            return first
             break
         elif len(provider.eth.getCode(address, midpoint)) > 0:        
             last = midpoint
         else:
             first = midpoint + 1
+    return first
