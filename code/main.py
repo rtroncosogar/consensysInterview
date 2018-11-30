@@ -21,8 +21,8 @@ def lookForBlockAndHashBlock(end_point, address):
         sys.stdout.write('There is a problem with the connection' + '\n')
 
 '''
-        Below, is the argument parser
-                                        '''
+    Below, is the argument parser
+'''
 
 parser = argparse.ArgumentParser(description='A Python snipet that looks for the BlockHash and the TxHash, that belongs to a contract address.')
 requiredNamed = parser.add_argument_group('Required named arguments')
