@@ -39,7 +39,6 @@ def binarySeeker(value, provider, address):
     ''' This function implements BinarySearch Algorithm to seek the first main block, where the contract was deployed '''
     first = 0
     last = value
-    midpoint = (first + last) // 2
     while True:
         midpoint = (first + last) // 2
         if first == last:
