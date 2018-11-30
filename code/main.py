@@ -8,7 +8,7 @@ def lookForBlockAndHashBlock(end_point, address):
     web3 = Web3(Web3.HTTPProvider(end_point))
     assert web3.isAddress(address), 'You have provide an invalid address'
     address = address.lower()
-    if web3.isConnected() == True:
+    if web3.isConnected():
         address = web3.toChecksumAddress(address)
         find = 0
         i = hp.binarySeeker(web3.eth.blockNumber, web3, address) 
