@@ -7,13 +7,6 @@ import sha3
 '''
 
 
-def blockSeeker(provider, address, currentBlockNumber):
-    ''' This function returns the length of a parameters that returns the eth_Code,
-        for reference: https://infura.io/docs/ethereum/json-rpc/eth_getCode 
-    '''
-    return len(provider.eth.getCode(address, currentBlockNumber))
-
-
 def outputData(provider, index):
     ''' This function is used to get the BlockHash and TransactionHash, it's separated
         just to make a cleaner code 
@@ -22,24 +15,27 @@ def outputData(provider, index):
     sys.stdout.write('Transaction: ' + str(provider.toHex(index['hash'])))
     
 
-def addressCalculator(provider, currentBlockNumber, attribute, address):
+def blockSeeker(provider, currentBlockNumber, attribute, address):
+    ''' Looks for the transaction Hash and block Hash inside the
+        provided block 
+    '''
+    for u in provider.eth.getBlock(currentBlockNumber, True)[attribute]:        
+        if u['to'] == None:
+            if addressCalculator(u, provider) == address:
+                break
+    return True, u
+
+
+def addressCalculator(currentDict, provider):
     ''' This function returns a candidate address, generated according the Ethereum specification,
         for  reference, I highly reccomend to see: 
         https://medium.com/@codetractio/inside-an-ethereum-transaction-fa94ffca912f
     '''
-    count = 0
-    for u in provider.eth.getBlock(currentBlockNumber, True)[attribute]:
-        if count > 0:
-            break           
-        elif u['to'] == None:
-            sender = bytes.fromhex(str(u['from']).replace('0x',''))
-            currentContract = '0x' + str(sha3.keccak_256(rlp.encode([sender, u['nonce']])).hexdigest()[-40:])
-            currentContract = provider.toChecksumAddress(currentContract)
-            if currentContract == address:
-                currentDict = u
-                count += 1
-    return True, currentDict 
-
+    sender = bytes.fromhex(str(currentDict['from']).replace('0x',''))
+    currentContract = provider.toChecksumAddress('0x' + str(sha3.keccak_256(rlp.encode([sender, 
+                                                    currentDict['nonce']])).hexdigest()[-40:]))
+    return currentContract
+            
 
 def binarySeeker(value, provider, address):
     ''' This function implements BinarySearch Algorithm to 
