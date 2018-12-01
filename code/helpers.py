@@ -23,7 +23,7 @@ def blockSeeker(provider, currentBlockNumber, attribute, address):
         if u['to'] == None:
             if addressCalculator(u, provider) == address:
                 break
-    return True, u
+    return u
 
 
 def addressCalculator(currentDict, provider):
