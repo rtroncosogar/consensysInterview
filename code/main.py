@@ -6,9 +6,9 @@ from web3 import Web3
 
 def lookForBlockAndHashBlock(end_point, address):
     web3 = Web3(Web3.HTTPProvider(end_point))
-    if web3.isAddress(address) == False:
+    if not web3.isAddress(address):
         sys.stdout.write('The address: ' + address + ' is not an ethereum address.')
-    elif web3.isConnected() == False:
+    elif not web3.isConnected():
         sys.stdout.write('Can not reach Infura with the host: ' + end_point)
     elif len(web3.eth.getCode(address)) == 0:
         sys.stdout.write('Please, verify the current deployment state of the contract.')
