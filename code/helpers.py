@@ -10,7 +10,7 @@ import sha3
 def outputData(provider, index):
     ''' This function is used to get the BlockHash and TransactionHash, it's separated
         just to make a cleaner code 
-    '''
+    '''    
     sys.stdout.write('Block: ' + str(provider.toHex(index['blockHash'])) + '\n')
     sys.stdout.write('Transaction: ' + str(provider.toHex(index['hash'])))
     
@@ -20,9 +20,8 @@ def blockSeeker(provider, currentBlockNumber, attribute, address):
         provided block 
     '''
     for u in provider.eth.getBlock(currentBlockNumber, True)[attribute]:        
-        if u['to'] == None:
-            if addressCalculator(u, provider) == address:
-                break
+        if u['to'] == None and addressCalculator(u, provider) == address:
+            break
     return u
 
 
@@ -43,11 +42,9 @@ def binarySeeker(value, provider, address):
     '''
     first = 0
     last = value
-    while True:
+    while first != last:
         midpoint = (first + last) // 2      
-        if first == last:
-            break
-        elif len(provider.eth.getCode(address, midpoint)) > 0:        
+        if len(provider.eth.getCode(address, midpoint)) > 0:        
             last = midpoint
         else:
             first = midpoint + 1
