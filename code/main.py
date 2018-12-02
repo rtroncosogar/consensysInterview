@@ -6,6 +6,7 @@ from web3 import Web3
 
 def lookForBlockAndHashBlock(end_point, address):
     web3 = Web3(Web3.HTTPProvider(end_point))
+    address = web3.toChecksumAddress(address.lower())
     if not web3.isAddress(address):
         sys.stdout.write('The address: ' + address + ' is not an ethereum address.')
     elif not web3.isConnected():
@@ -13,7 +14,6 @@ def lookForBlockAndHashBlock(end_point, address):
     elif len(web3.eth.getCode(address)) == 0:
         sys.stdout.write('Please, verify the current deployment state of the contract.')
     else:
-        address = web3.toChecksumAddress(address.lower())
         i = hp.binarySeeker(web3.eth.blockNumber, web3, address) 
         index = hp.blockSeeker(web3, i, 'transactions', address)
         hp.outputData(web3, index)
