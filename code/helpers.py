@@ -11,8 +11,8 @@ def outputData(provider, index):
     ''' This function is used to get the BlockHash and TransactionHash, it's separated
         just to make a cleaner code 
     '''    
-    sys.stdout.write('Block: ' + str(provider.toHex(index['blockHash'])) + '\n')
-    sys.stdout.write('Transaction: ' + str(provider.toHex(index['hash'])))
+    sys.stdout.write('Block: ' + str(provider.toHex(index['blockHash'])) + '\n' + 
+                    'Transaction: ' + str(provider.toHex(index['hash'])))
     
 
 def blockSeeker(provider, currentBlockNumber, attribute, address):
