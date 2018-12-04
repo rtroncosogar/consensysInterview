@@ -4,18 +4,27 @@ import helpers as hp
 from web3 import Web3
 
 
-def lookForBlockAndHashBlock(end_point, address):
+def lookForBlockAndHashBlock(end_point, addressToSeek):
+    ''' 
+        This is the "Main" function of the challenge proposed by VIANT, it uses every
+        function defined in the "helpers.py" in order to complete the task
+        The challenge consist in using the infura's API and web3.py to
+        create a python script capable to return the BlockHash and TransactionHash
+        of the contract provided.
+
+        This code usually takes 15 seconds (or less) to complete the task.
+    '''
     web3 = Web3(Web3.HTTPProvider(end_point))
-    address = web3.toChecksumAddress(address.lower())
-    if not web3.isAddress(address):
-        sys.stdout.write('The address: ' + address + ' is not an ethereum address.')
+    addressToSeek = web3.toChecksumAddress(addressToSeek.lower())
+    if not web3.isAddress(addressToSeek):
+        sys.stdout.write('The address: ' + addressToSeek + ' is not an ethereum address.')
     elif not web3.isConnected():
         sys.stdout.write('Can not reach Infura with the host: ' + end_point)
-    elif len(web3.eth.getCode(address)) == 0:
+    elif len(web3.eth.getCode(addressToSeek)) == 0:
         sys.stdout.write('Please, verify the current deployment state of the contract.')
     else:
-        i = hp.binarySeeker(web3.eth.blockNumber, web3, address) 
-        index = hp.blockSeeker(web3, i, 'transactions', address)
+        blockNumberOfTheContract = hp.binarySeeker(web3.eth.blockNumber, web3, addressToSeek) 
+        index = hp.blockSeeker(web3, blockNumberOfTheContract, 'transactions', addressToSeek)
         hp.outputData(web3, index)
 
 

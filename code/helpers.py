@@ -15,14 +15,14 @@ def outputData(provider, index):
                     'Transaction: ' + str(provider.toHex(index['hash'])))
     
 
-def blockSeeker(provider, currentBlockNumber, attribute, address):
+def blockSeeker(provider, currentBlockNumber, attribute, addressToFind):
     ''' Looks for the transaction Hash and block Hash inside the
         provided block 
     '''
-    for u in provider.eth.getBlock(currentBlockNumber, True)[attribute]:        
-        if u['to'] == None and addressCalculator(u, provider) == address:
+    for parameterInBlock in provider.eth.getBlock(currentBlockNumber, True)[attribute]:        
+        if parameterInBlock['to'] == None and addressCalculator(parameterInBlock, provider) == addressToFind:
             break
-    return u
+    return parameterInBlock
 
 
 def addressCalculator(currentDict, provider):
@@ -36,15 +36,15 @@ def addressCalculator(currentDict, provider):
     return currentContract
             
 
-def binarySeeker(value, provider, address):
+def binarySeeker(lastMinedBlock, provider, addressToFind):
     ''' This function implements BinarySearch Algorithm to 
         seek the first main block, where the contract was deployed 
     '''
     first = 0
-    last = value
+    last = lastMinedBlock
     while first != last:
         midpoint = (first + last) // 2      
-        if len(provider.eth.getCode(address, midpoint)) > 0:        
+        if len(provider.eth.getCode(addressToFind, midpoint)) > 0:        
             last = midpoint
         else:
             first = midpoint + 1
